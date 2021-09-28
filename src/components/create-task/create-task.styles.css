@@ -1,0 +1,70 @@
+.input-container {
+  border-radius: 5px;
+  position: relative;
+  background-color: #161722;
+  padding: 0.5rem;
+}
+
+.make-task {
+  width: 90%;
+  color: white;
+  background: transparent;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  font-size: 1rem;
+  margin-left: 2rem;
+}
+
+.toggle-completed {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+  margin-left: 0.5rem;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #eee;
+  border-radius: 50%;
+  margin-left: 0.5rem;
+  margin-top: 1rem;
+}
+
+.checkmark:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+
+.checkmark input:checked ~ .checkmark {
+  background-color: #2196F3;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+/*# sourceMappingURL=create-task.styles.css.map */
