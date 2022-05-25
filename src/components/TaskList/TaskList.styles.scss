@@ -1,8 +1,29 @@
 @import '../../variables.scss';
 
 .task-list {
-    width: 35vw;
-    height: 500px;
+    margin-top: 1rem;
+    width: 40vw;
     background-color:  $veryDarkBlue;
     color: white;
+    border-radius: 5px;
+}
+
+.control-panel {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    font-size: 0.8rem;
+}
+
+.control-filters {
+    display: flex;
+    justify-content: space-between;
+}
+
+.control-filters p{
+    margin-left: 0.5rem;
+}
+
+.mobile-control-filters {
+    display: none;
 }

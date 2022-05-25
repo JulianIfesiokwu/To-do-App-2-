@@ -12,7 +12,11 @@ function App() {
 
   const addTask = (e) => {
     if (e.charCode === code) {
-      const newTask = { id: new Date().getTime().toString(), title: task };
+      const newTask = {
+        id: new Date().getTime().toString(),
+        title: task,
+        completed: false,
+      };
       setAllTasks([...allTasks, newTask]);
       setTask("");
     }
@@ -21,12 +25,17 @@ function App() {
     }
   };
 
+  const deleteTask = () => {};
+
   return (
     <div className="container">
       <div className="to-do">
         <HeaderContainer />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
-        <TaskList item={allTasks} />
+        <TaskList allTasks={allTasks} />
+      </div>
+      <div className="footer">
+        <p>Drag and drop to reorder list</p>
       </div>
     </div>
   );
