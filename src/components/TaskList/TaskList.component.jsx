@@ -1,14 +1,14 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks }) => {
+const TaskList = ({ allTasks, deleteTask }) => {
     return (
         <div className="task-list">
-            {allTasks.length > 0 && allTasks?.map((task) => {
+            {allTasks.length > 0 && allTasks.map((task) => {
                 const {id, title} = task
                 
                 return (
-                    <Task title={title} key={id}/>
+                    <Task title={title} key={id} deleteTask={deleteTask} id={id} />
                 )
             })}
             <div className="control-panel">

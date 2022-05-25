@@ -1,7 +1,7 @@
 import './Task.styles.scss'
 import cancelButton from '../../images/icon-cross.svg'
 
-const Task = ({ title }) => {
+const Task = ({ title, deleteTask, id}) => {
     
     return (
         <article className='task'>
@@ -13,7 +13,7 @@ const Task = ({ title }) => {
             <img 
             src={cancelButton} alt='' 
             className='cancel-icon' 
-            onClick={(e) => console.log(e.target)}
+            onClick={() => deleteTask(id)}
             />
             </article>
     )

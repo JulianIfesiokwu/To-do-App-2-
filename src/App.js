@@ -22,17 +22,21 @@ function App() {
     }
     if (e.charCode === code && e.target.value === "") {
       alert("Please enter task details");
+      return;
     }
   };
 
-  const deleteTask = () => {};
+  const deleteTask = (id) => {
+    setAllTasks(allTasks.filter((task) => task.id !== id));
+    console.log(id);
+  };
 
   return (
     <div className="container">
       <div className="to-do">
         <HeaderContainer />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
-        <TaskList allTasks={allTasks} />
+        <TaskList allTasks={allTasks} deleteTask={deleteTask} />
       </div>
       <div className="footer">
         <p>Drag and drop to reorder list</p>
