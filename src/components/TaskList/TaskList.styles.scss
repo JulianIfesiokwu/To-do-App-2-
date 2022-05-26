@@ -13,7 +13,10 @@
     justify-content: space-between;
     padding: 1rem;
     font-size: 0.8rem;
+    cursor: pointer;
 }
+
+.items-left {color: grey;}
 
 .control-filters {
     display: flex;
@@ -22,8 +25,57 @@
 
 .control-filters p{
     margin-left: 0.5rem;
+    color: grey;
+}
+
+.control-filters p:hover{
+    color: white;
+}
+
+.clear-completed {
+    color: grey;
+}
+.clear-completed:hover {
+    color: white;
 }
 
 .mobile-control-filters {
     display: none;
+    margin-top: 1rem;
+    width: 100%;
+    justify-content: center;
+    background-color: $veryDarkBlue;
+    border-radius: 5px;
+}
+
+@media only screen and (max-width: 600px) {
+    .task-list {
+        width: 80vw;
+        margin: 1rem auto;
+    }
+
+    .control-filters {
+        display: none;
+    }
+
+    .mobile-control-filters {
+        display: flex;
+        padding: 1rem;
+        cursor: pointer;
+    }
+
+    .mobile-control-filters p {
+        margin-left: 0.5rem;
+        color: grey;
+    }
+
+    .mobile-control-filters p:hover {
+        color: white;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .task-list {
+        width: 80vw;
+        margin: 1rem auto;
+    }
 }

@@ -9,6 +9,13 @@ function App() {
   const code = 13;
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([]);
+  const [completed, setCompleted] = useState(false);
+  const [mode, setMode] = useState(false);
+
+  const toggleTheme = () => {
+    setMode(!mode);
+    console.log(mode);
+  };
 
   const addTask = (e) => {
     if (e.charCode === code) {
@@ -28,15 +35,26 @@ function App() {
 
   const deleteTask = (id) => {
     setAllTasks(allTasks.filter((task) => task.id !== id));
+  };
+
+  const toggleCompleted = (task, id) => {
+    if (task.id === id) {
+      setCompleted(!completed);
+      console.log(task.id, id);
+    }
     console.log(id);
   };
 
   return (
     <div className="container">
       <div className="to-do">
-        <HeaderContainer />
+        <HeaderContainer toggleTheme={toggleTheme} />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
-        <TaskList allTasks={allTasks} deleteTask={deleteTask} />
+        <TaskList
+          allTasks={allTasks}
+          deleteTask={deleteTask}
+          toggleCompleted={toggleCompleted}
+        />
       </div>
       <div className="footer">
         <p>Drag and drop to reorder list</p>

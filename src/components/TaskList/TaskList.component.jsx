@@ -1,14 +1,22 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks, deleteTask }) => {
+const TaskList = ({ allTasks, deleteTask, toggleCompleted }) => {
     return (
-        <div className="task-list">
+        <div>
+            <div className="task-list">
             {allTasks.length > 0 && allTasks.map((task) => {
                 const {id, title} = task
                 
                 return (
-                    <Task title={title} key={id} deleteTask={deleteTask} id={id} />
+                    <Task 
+                    task={task} 
+                    title={title} 
+                    key={id} 
+                    deleteTask={deleteTask} 
+                    id={id} 
+                    toggleCompleted={toggleCompleted} 
+                    />
                 )
             })}
             <div className="control-panel">
@@ -19,6 +27,7 @@ const TaskList = ({ allTasks, deleteTask }) => {
                     <p className="completed">Completed</p>
                 </div>
                 <p className="clear-completed">Clear Completed</p>
+            </div>
             </div>
             <div className="mobile-control-filters">
                 <p className="all">All</p>
