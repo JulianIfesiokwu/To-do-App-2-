@@ -1,15 +1,21 @@
 import React from "react";
 
-import icon from '../../images/icon-sun.svg';
+import sunIcon from '../../images/icon-sun.svg';
+import moonIcon from '../../images/icon-moon.svg';
 
 import './header.styles.css'
 
-const HeaderContainer = (toggleTheme) => {
+const HeaderContainer = (toggleTheme, theme) => {
 
     return (
         <div className='header'>
             <h1 className='title'>todo</h1>
-            <img className='mode-icon' src={icon} alt='icon' onClick={() => toggleTheme}/>
+            <img 
+            className='mode-icon' 
+            src={theme ? sunIcon : moonIcon} 
+            alt='icon' 
+            value={theme} 
+            onClick={() => toggleTheme}/>
         </div>
     )
 }

@@ -10,11 +10,16 @@ function App() {
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([]);
   const [completed, setCompleted] = useState(false);
-  const [mode, setMode] = useState(false);
+  const [theme, setTheme] = useState(false);
+  const [strikeThrough, setStrikeThrough] = useState(false);
 
   const toggleTheme = () => {
-    setMode(!mode);
-    console.log(mode);
+    setTheme(!theme);
+    console.log(theme);
+  };
+
+  const toggleStrikeThrough = () => {
+    setStrikeThrough(!strikeThrough);
   };
 
   const addTask = (e) => {
@@ -40,20 +45,20 @@ function App() {
   const toggleCompleted = (task, id) => {
     if (task.id === id) {
       setCompleted(!completed);
-      console.log(task.id, id);
+      toggleStrikeThrough(!strikeThrough);
     }
-    console.log(id);
   };
 
   return (
     <div className="container">
       <div className="to-do">
-        <HeaderContainer toggleTheme={toggleTheme} />
+        <HeaderContainer toggleTheme={toggleTheme} theme={theme} />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
         <TaskList
           allTasks={allTasks}
           deleteTask={deleteTask}
           toggleCompleted={toggleCompleted}
+          completed={completed}
         />
       </div>
       <div className="footer">
