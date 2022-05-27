@@ -3,7 +3,7 @@ import './create-task.styles.scss';
 function CreateTask({addTask, setTask, task}) {
     return (
         <div className='input-container'>
-            <input type="checkbox" className='toggle-completed'/>
+            <input type="checkbox" className='create-completed' disabled/>
             <span className="checkmark"></span>
             <input placeholder="Create a new todo..." 
             type="text" 

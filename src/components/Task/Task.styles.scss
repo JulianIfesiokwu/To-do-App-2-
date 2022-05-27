@@ -1,8 +1,8 @@
 @import '../../variables.scss';
 
 .task {
-    padding: 1rem;
-    border-bottom: 1px solid white;
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--text-color);;
     position: relative;
     cursor: pointer;
 }
@@ -16,6 +16,7 @@
 }
 
 .toggle-completed {
+    display: inline;
     width: 22px;
     height: 22px;
     border-radius: 100%;

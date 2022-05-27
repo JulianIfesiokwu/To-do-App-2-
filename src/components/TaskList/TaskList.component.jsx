@@ -1,7 +1,7 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks, deleteTask, toggleCompleted }) => {
+const TaskList = ({ allTasks, deleteTask, toggleCompleted, completed }) => {
     return (
         <div>
             <div className="task-list">
@@ -16,6 +16,7 @@ const TaskList = ({ allTasks, deleteTask, toggleCompleted }) => {
                     deleteTask={deleteTask} 
                     id={id} 
                     toggleCompleted={toggleCompleted}
+                    completed={completed}
                     />
                 )
             })}

@@ -3,8 +3,8 @@
 .task-list {
     margin-top: 1rem;
     width: 40vw;
-    background-color:  $veryDarkBlue;
-    color: white;
+    background-color: var(--todoBackground-color);
+    color: var(--text-color);
     border-radius: 5px;
 }
 
@@ -16,7 +16,9 @@
     cursor: pointer;
 }
 
-.items-left {color: grey;}
+.items-left {
+    color: var(--text-color);
+}
 
 .control-filters {
     display: flex;
@@ -25,7 +27,7 @@
 
 .control-filters p{
     margin-left: 0.5rem;
-    color: grey;
+    color: var(--text-color);
 }
 
 .control-filters p:hover{
@@ -33,7 +35,7 @@
 }
 
 .clear-completed {
-    color: grey;
+    color: var(--text-color);
 }
 .clear-completed:hover {
     color: white;
@@ -44,7 +46,7 @@
     margin-top: 1rem;
     width: 100%;
     justify-content: center;
-    background-color: $veryDarkBlue;
+    background-color: var(--todoBackground-color);
     border-radius: 5px;
 }
 
@@ -66,7 +68,7 @@
 
     .mobile-control-filters p {
         margin-left: 0.5rem;
-        color: grey;
+        color: var(--text-color);
     }
 
     .mobile-control-filters p:hover {

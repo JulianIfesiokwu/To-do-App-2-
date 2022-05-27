@@ -5,7 +5,7 @@ import moonIcon from '../../images/icon-moon.svg';
 
 import './header.styles.css'
 
-const HeaderContainer = (toggleTheme, theme) => {
+const HeaderContainer = ({ toggleTheme, theme }) => {
 
     return (
         <div className='header'>
@@ -15,7 +15,7 @@ const HeaderContainer = (toggleTheme, theme) => {
             src={theme ? sunIcon : moonIcon} 
             alt='icon' 
             value={theme} 
-            onClick={() => toggleTheme}/>
+            onClick={() => toggleTheme(theme)}/>
         </div>
     )
 }
