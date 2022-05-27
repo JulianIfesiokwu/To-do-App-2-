@@ -1,21 +1,24 @@
 import './Task.styles.scss'
 import cancelButton from '../../images/icon-cross.svg'
 
-const Task = ({ title, deleteTask, id, toggleCompleted, task}) => {
+const Task = ({ title, deleteTask, id, toggleCompleted, task, completed }) => {
     
     return (
         <article className='task'>
             <div className="checkmark-container">
-                <input type="checkbox" className='toggle-completed' />
-                <span className="checkmark" onClick={() => toggleCompleted(task, id)}></span>
+                <input 
+                type="checkbox" 
+                className='toggle-completed' 
+                value={completed} 
+                onClick={() => toggleCompleted(task, id)}/>
+                {/* <span className="checkmark"></span> */}
             </div>
-            <p className='task-title'>{title}</p>
+            <p className='created-title'>{title}</p>
             <img 
             src={cancelButton} alt='' 
             className='cancel-icon' 
             onClick={() => deleteTask(id)}
             />
-            {console.log(task)}
         </article>
     )
 }

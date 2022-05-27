@@ -15,7 +15,7 @@ const TaskList = ({ allTasks, deleteTask, toggleCompleted }) => {
                     key={id} 
                     deleteTask={deleteTask} 
                     id={id} 
-                    toggleCompleted={toggleCompleted} 
+                    toggleCompleted={toggleCompleted}
                     />
                 )
             })}
