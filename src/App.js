@@ -13,13 +13,9 @@ function App() {
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
 
-  const toggleTheme = () => {
+  const toggleTheme = (theme) => {
     setTheme(!theme);
-    console.log(theme);
-  };
-
-  const toggleStrikeThrough = () => {
-    setStrikeThrough(!strikeThrough);
+    console.log("yas");
   };
 
   const addTask = (e) => {
@@ -43,14 +39,19 @@ function App() {
   };
 
   const toggleCompleted = (task, id) => {
+    const specificItem = allTasks.find((task) => task.id === id);
+    console.log(specificItem);
     if (task.id === id) {
       setCompleted(!completed);
-      toggleStrikeThrough(!strikeThrough);
+      setStrikeThrough(!strikeThrough);
+    }
+    if (task.id !== id) {
+      return;
     }
   };
 
   return (
-    <div className="container">
+    <div className={theme ? "dark container" : "light container"}>
       <div className="to-do">
         <HeaderContainer toggleTheme={toggleTheme} theme={theme} />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
