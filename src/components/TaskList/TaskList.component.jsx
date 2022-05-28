@@ -1,11 +1,11 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks, deleteTask, toggleCompleted, completed }) => {
+const TaskList = ({ allTasks, deleteTask, toggleCompleted, completed, Draggable }) => {
     return (
         <div>
             <div className="task-list">
-            {allTasks.length > 0 && allTasks.map((task) => {
+            {allTasks.length > 0 && allTasks.map((task, index) => {
                 const {id, title} = task
                 
                 return (
@@ -17,6 +17,8 @@ const TaskList = ({ allTasks, deleteTask, toggleCompleted, completed }) => {
                     id={id} 
                     toggleCompleted={toggleCompleted}
                     completed={completed}
+                    Draggable={Draggable}
+                    index={index}
                     />
                 )
             })}

@@ -1,6 +1,6 @@
 import "./App.css";
 import { useState } from "react";
-
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import HeaderContainer from "./components/header/header.component";
 import CreateTask from "./components/create-task/create-task.component";
 import TaskList from "./components/TaskList/TaskList.component";
@@ -38,7 +38,7 @@ function App() {
     setAllTasks(allTasks.filter((task) => task.id !== id));
   };
 
-  const toggleCompleted = (task, id) => {
+  const toggleCompleted = (id) => {
     const specificItem = allTasks.find((task) => task.id === id);
     console.log(specificItem);
     if (task.id === id) {
@@ -55,12 +55,25 @@ function App() {
       <div className="to-do">
         <HeaderContainer toggleTheme={toggleTheme} theme={theme} />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
-        <TaskList
-          allTasks={allTasks}
-          deleteTask={deleteTask}
-          toggleCompleted={toggleCompleted}
-          completed={completed}
-        />
+        <DragDropContext>
+          <Droppable droppableId="toDrop">
+            {(provided) => {
+              return (
+                <div {...provided.droppableProps} ref={provided.innerRef}>
+                  <TaskList
+                    id="toDrop"
+                    allTasks={allTasks}
+                    deleteTask={deleteTask}
+                    toggleCompleted={toggleCompleted}
+                    completed={completed}
+                    Draggable={Draggable}
+                    placeholder={provided.placeholder}
+                  />
+                </div>
+              );
+            }}
+          </Droppable>
+        </DragDropContext>
       </div>
       <div className="footer">
         <p>Drag and drop to reorder list</p>
