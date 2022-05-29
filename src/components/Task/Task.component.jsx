@@ -4,7 +4,7 @@ import cancelButton from '../../images/icon-cross.svg'
 const Task = ({ title, deleteTask, id, toggleCompleted, task, completed, Draggable, index}) => {
     
     return (
-        <Draggable key={id} draggableId={id} >
+        <Draggable key={id} draggableId={id} index={index}>
             {(provided) => {
                 return (
                     <article className='task' {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef} index={index}>

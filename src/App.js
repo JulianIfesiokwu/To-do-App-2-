@@ -13,9 +13,20 @@ function App() {
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
 
+  // For beautiful d-n-d
+  const [updatedTaskList, setUpdatedTaskList] = useState(allTasks);
+
+  const handleOnDragEnd = (result) => {
+    console.log(result);
+    const items = Array.from[updatedTaskList];
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.desination.index, 0, reorderedItem);
+
+    setUpdatedTaskList(items);
+  };
+
   const toggleTheme = (theme) => {
     setTheme(!theme);
-    console.log("yas");
   };
 
   const addTask = (e) => {
@@ -55,7 +66,7 @@ function App() {
       <div className="to-do">
         <HeaderContainer toggleTheme={toggleTheme} theme={theme} />
         <CreateTask task={task} addTask={addTask} setTask={setTask} />
-        <DragDropContext>
+        <DragDropContext onDragEnd={handleOnDragEnd}>
           <Droppable droppableId="toDrop">
             {(provided) => {
               return (
@@ -69,6 +80,7 @@ function App() {
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
                   />
+                  {provided.placeholder}
                 </div>
               );
             }}
