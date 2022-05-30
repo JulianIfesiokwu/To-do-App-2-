@@ -15,7 +15,7 @@ const Task = ({ title, deleteTask, id, toggleCompleted, task, completed, Draggab
                             onClick={() => toggleCompleted(task, id)}/>
                             {/* <span className="checkmark"></span> */}
                         </div>
-                        <p className={completed ? 'strike-through created-title' : 'created-title'}>{title}</p>
+                        <p className={task.completed ? 'strike-through created-title' : 'created-title'}>{title}</p>
                         <img 
                         src={cancelButton} alt='' 
                         className='cancel-icon' 

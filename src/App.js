@@ -13,8 +13,8 @@ function App() {
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
 
+  // Rearrange items on drag and drop
   const handleOnDragEnd = (result) => {
-    console.log(result);
     const items = Array.from(allTasks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
@@ -22,11 +22,17 @@ function App() {
     setAllTasks(items);
   };
 
+  // Toggle light and dark mode
   const toggleTheme = (theme) => {
     setTheme(!theme);
   };
 
+  // Add a task to the task list
   const addTask = (e) => {
+    if (e.target.value === "" && e.charCode === code) {
+      alert("Please enter task details");
+      return;
+    }
     if (e.charCode === code) {
       const newTask = {
         id: new Date().getTime().toString(),
@@ -36,21 +42,18 @@ function App() {
       setAllTasks([...allTasks, newTask]);
       setTask("");
     }
-    if (e.charCode === code && e.target.value === "") {
-      alert("Please enter task details");
-      return;
-    }
   };
 
+  // delete a task
   const deleteTask = (id) => {
     setAllTasks(allTasks.filter((task) => task.id !== id));
   };
 
-  const toggleCompleted = (id) => {
-    const specificItem = allTasks.find((task) => task.id === id);
-    console.log(specificItem);
+  // toggle completed or not
+  const toggleCompleted = (task, id) => {
+    console.log(task);
     if (task.id === id) {
-      setCompleted(!completed);
+      task.completed = !task.completed;
       setStrikeThrough(!strikeThrough);
     }
     if (task.id !== id) {
@@ -77,7 +80,7 @@ function App() {
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
                   />
-                  {provided.placeholder}
+                  <div>{provided.placeholder}</div>
                 </div>
               );
             }}
