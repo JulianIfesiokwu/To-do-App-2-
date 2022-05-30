@@ -13,16 +13,13 @@ function App() {
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
 
-  // For beautiful d-n-d
-  const [updatedTaskList, setUpdatedTaskList] = useState(allTasks);
-
   const handleOnDragEnd = (result) => {
     console.log(result);
-    const items = Array.from[updatedTaskList];
+    const items = Array.from(allTasks);
     const [reorderedItem] = items.splice(result.source.index, 1);
-    items.splice(result.desination.index, 0, reorderedItem);
+    items.splice(result.destination.index, 0, reorderedItem);
 
-    setUpdatedTaskList(items);
+    setAllTasks(items);
   };
 
   const toggleTheme = (theme) => {
