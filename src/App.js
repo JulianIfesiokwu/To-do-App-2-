@@ -12,6 +12,7 @@ function App() {
   const [completed, setCompleted] = useState(false);
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
+  const [toggleFilter, setToggleFilter] = useState(false);
 
   // Rearrange items on drag and drop
   const handleOnDragEnd = (result) => {
@@ -51,13 +52,46 @@ function App() {
 
   // toggle completed or not
   const toggleCompleted = (task, id) => {
-    console.log(task);
     if (task.id === id) {
       task.completed = !task.completed;
       setStrikeThrough(!strikeThrough);
     }
     if (task.id !== id) {
       return;
+    }
+  };
+
+  // Show all tasks
+  const filterTasks = (e) => {
+    let type = e.target.textContent;
+
+    if (type === "All") {
+      setToggleFilter(!toggleFilter);
+      setAllTasks(allTasks);
+    }
+
+    if (type === "Active") {
+      const newTaskList = Array.from(allTasks);
+      const filteredList = newTaskList.filter(
+        (task) => task.completed === false
+      );
+      setToggleFilter(!toggleFilter);
+      console.log(toggleFilter);
+      setAllTasks(filteredList);
+    }
+
+    if (type === "Completed") {
+      const newTaskList = Array.from(allTasks);
+      const filteredList = newTaskList.filter(
+        (task) => task.completed === true
+      );
+      setToggleFilter(!toggleFilter);
+      setAllTasks(filteredList);
+    }
+
+    if (type === "Clear Completed") {
+      let newTaskList = allTasks;
+      setAllTasks(newTaskList.filter((task) => task.completed === false));
     }
   };
 
@@ -79,6 +113,8 @@ function App() {
                     completed={completed}
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
+                    filterTasks={filterTasks}
+                    toggleFilter={toggleFilter}
                   />
                   <div>{provided.placeholder}</div>
                 </div>

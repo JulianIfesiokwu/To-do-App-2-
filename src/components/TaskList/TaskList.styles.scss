@@ -25,13 +25,25 @@
     justify-content: space-between;
 }
 
-.control-filters p{
-    margin-left: 0.5rem;
+.all,.active,.completed {
+    margin-left: 1rem;
     color: var(--text-color);
 }
 
-.control-filters p:hover{
+.all:hover,
+.active:hover,
+.completed:hover {
     color: white;
+}
+
+.active-filter {
+    color: var(--accent-color);
+    margin-left: 1rem;
+}
+
+.not-active-filter {
+    color: var(--text-color);
+    margin-left: 1rem;
 }
 
 .clear-completed {
@@ -66,12 +78,16 @@
         cursor: pointer;
     }
 
-    .mobile-control-filters p {
-        margin-left: 0.5rem;
+    .all,
+    .active,
+    .completed {
+        margin-left: 1rem;
         color: var(--text-color);
     }
 
-    .mobile-control-filters p:hover {
+    .all:hover,
+    .active:hover,
+    .completed:hover {
         color: white;
     }
 }
