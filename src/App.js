@@ -9,7 +9,6 @@ function App() {
   const code = 13;
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([]);
-  const [completed, setCompleted] = useState(false);
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
   const [toggleFilter, setToggleFilter] = useState(false);
@@ -39,6 +38,7 @@ function App() {
         id: new Date().getTime().toString(),
         title: task,
         completed: false,
+        shown: true,
       };
       setAllTasks([...allTasks, newTask]);
       setTask("");
@@ -76,17 +76,15 @@ function App() {
         (task) => task.completed === false
       );
       setToggleFilter(!toggleFilter);
-      console.log(toggleFilter);
       setAllTasks(filteredList);
     }
 
     if (type === "Completed") {
-      const newTaskList = Array.from(allTasks);
-      const filteredList = newTaskList.filter(
-        (task) => task.completed === true
-      );
-      setToggleFilter(!toggleFilter);
-      setAllTasks(filteredList);
+      allTasks.filter((task) => {
+        return !task.completed ? (task.shown = false) : (task.shown = true);
+      });
+      // setToggleFilter(!toggleFilter);
+      console.log(allTasks);
     }
 
     if (type === "Clear Completed") {
@@ -110,7 +108,6 @@ function App() {
                     allTasks={allTasks}
                     deleteTask={deleteTask}
                     toggleCompleted={toggleCompleted}
-                    completed={completed}
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
                     filterTasks={filterTasks}

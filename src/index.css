@@ -34,6 +34,6 @@ code {
 }
 
 .show {
-  display: block;
+  display: flex;
 }
 
