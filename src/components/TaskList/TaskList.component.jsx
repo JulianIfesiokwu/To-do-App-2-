@@ -1,11 +1,11 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks, deleteTask, toggleCompleted, Draggable, filterTasks, toggleFilter }) => {
+const TaskList = ({ allTasks, deleteTask, toggleCompleted, Draggable, filterTasks, toggleFilter, clonedAllTasks }) => {
     return (
         <div>
             <div className="task-list">
-            {allTasks.length > 0 && allTasks.map((task, index) => {
+            {clonedAllTasks.length > 0 && clonedAllTasks.map((task, index) => {
                 const {id, title} = task
                 
                 return (

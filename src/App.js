@@ -9,16 +9,17 @@ function App() {
   const code = 13;
   const [task, setTask] = useState("");
   const [allTasks, setAllTasks] = useState([]);
+  const [clonedAllTasks, setClonedAllTasks] = useState([]);
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
-  const [toggleFilter, setToggleFilter] = useState(false);
 
   // Rearrange items on drag and drop
   const handleOnDragEnd = (result) => {
-    const items = Array.from(allTasks);
+    const items = Array.from(clonedAllTasks);
     const [reorderedItem] = items.splice(result.source.index, 1);
     items.splice(result.destination.index, 0, reorderedItem);
 
+    setClonedAllTasks(items);
     setAllTasks(items);
   };
 
@@ -41,12 +42,14 @@ function App() {
         shown: true,
       };
       setAllTasks([...allTasks, newTask]);
+      setClonedAllTasks([...allTasks, newTask]);
       setTask("");
     }
   };
 
   // delete a task
   const deleteTask = (id) => {
+    setClonedAllTasks(allTasks.filter((task) => task.id !== id));
     setAllTasks(allTasks.filter((task) => task.id !== id));
   };
 
@@ -66,30 +69,35 @@ function App() {
     let type = e.target.textContent;
 
     if (type === "All") {
-      setToggleFilter(!toggleFilter);
-      setAllTasks(allTasks);
+      // e.target.classList.toggle("active-filter");
+      setClonedAllTasks(allTasks);
+      return;
     }
 
     if (type === "Active") {
-      const newTaskList = Array.from(allTasks);
-      const filteredList = newTaskList.filter(
-        (task) => task.completed === false
-      );
-      setToggleFilter(!toggleFilter);
-      setAllTasks(filteredList);
+      e.target.classList.toggle("active-filter");
+      let filteredTasks = clonedAllTasks.filter((task) => {
+        return task.completed === false;
+      });
+
+      setClonedAllTasks(filteredTasks);
     }
 
     if (type === "Completed") {
-      allTasks.filter((task) => {
-        return !task.completed ? (task.shown = false) : (task.shown = true);
+      e.target.classList.toggle("active-filter");
+      let filteredTasks = clonedAllTasks.filter((task) => {
+        return task.completed === true;
       });
-      // setToggleFilter(!toggleFilter);
-      console.log(allTasks);
+      setClonedAllTasks(filteredTasks);
     }
 
     if (type === "Clear Completed") {
-      let newTaskList = allTasks;
-      setAllTasks(newTaskList.filter((task) => task.completed === false));
+      e.target.classList.toggle("active-filter");
+      let filteredTasks = allTasks.filter((task) => {
+        return task.completed !== true;
+      });
+      setAllTasks(filteredTasks);
+      setClonedAllTasks(allTasks);
     }
   };
 
@@ -106,12 +114,13 @@ function App() {
                   <TaskList
                     id="toDrop"
                     allTasks={allTasks}
+                    clonedAllTasks={clonedAllTasks}
+                    setClonedAllTasks={setClonedAllTasks}
                     deleteTask={deleteTask}
                     toggleCompleted={toggleCompleted}
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
                     filterTasks={filterTasks}
-                    toggleFilter={toggleFilter}
                   />
                   <div>{provided.placeholder}</div>
                 </div>

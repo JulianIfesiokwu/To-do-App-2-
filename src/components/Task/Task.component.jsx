@@ -11,7 +11,7 @@ const Task = ({ title, deleteTask, id, toggleCompleted, task, Draggable, index})
                         <div className="checkmark-container">
                             <input type="checkbox" 
                             className='toggle-completed' 
-                            value={task.completed} 
+                            value={task.completed ? true : false} 
                             onClick={() => toggleCompleted(task, id)}/>
                             {/* <span className="checkmark"></span> */}
                         </div>
