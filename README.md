@@ -60,8 +60,38 @@ I learnt how to manipulate arrays in React and JavaScript
 - React hook - useState
 
 ```js
-const proudOfThisFunc = () => {
-  console.log("🎉");
+// Rearrange items on drag and drop
+const handleOnDragEnd = (result) => {
+  const items = Array.from(clonedAllTasks);
+  const [reorderedItem] = items.splice(result.source.index, 1);
+  items.splice(result.destination.index, 0, reorderedItem);
+
+  setClonedAllTasks(items);
+  setAllTasks(items);
+};
+
+// Toggle light and dark mode
+const toggleTheme = (theme) => {
+  setTheme(!theme);
+};
+
+// Add a task to the task list
+const addTask = (e) => {
+  if (e.target.value === "" && e.charCode === code) {
+    alert("Please enter task details");
+    return;
+  }
+  if (e.charCode === code) {
+    const newTask = {
+      id: new Date().getTime().toString(),
+      title: task,
+      completed: false,
+      shown: true,
+    };
+    setAllTasks([...allTasks, newTask]);
+    setClonedAllTasks([...allTasks, newTask]);
+    setTask("");
+  }
 };
 ```
 
@@ -87,5 +117,4 @@ These are just some of my resources.
 
 ## Author
 
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Frontend Mentor - [https://www.frontendmentor.io/profile/JulianIfesiokwu](https://www.frontendmentor.io/profile/JulianIfesiokwu)
