@@ -12,6 +12,7 @@ function App() {
   const [clonedAllTasks, setClonedAllTasks] = useState([]);
   const [theme, setTheme] = useState(false);
   const [strikeThrough, setStrikeThrough] = useState(false);
+  const [activeFilter, setActiveFilter] = useState("all");
 
   // Rearrange items on drag and drop
   const handleOnDragEnd = (result) => {
@@ -69,13 +70,11 @@ function App() {
     let type = e.target.textContent;
 
     if (type === "All") {
-      // e.target.classList.toggle("active-filter");
       setClonedAllTasks(allTasks);
       return;
     }
 
     if (type === "Active") {
-      e.target.classList.toggle("active-filter");
       let filteredTasks = clonedAllTasks.filter((task) => {
         return task.completed === false;
       });
@@ -84,7 +83,6 @@ function App() {
     }
 
     if (type === "Completed") {
-      e.target.classList.toggle("active-filter");
       let filteredTasks = clonedAllTasks.filter((task) => {
         return task.completed === true;
       });
@@ -92,12 +90,11 @@ function App() {
     }
 
     if (type === "Clear Completed") {
-      e.target.classList.toggle("active-filter");
       let filteredTasks = allTasks.filter((task) => {
         return task.completed !== true;
       });
       setAllTasks(filteredTasks);
-      setClonedAllTasks(allTasks);
+      setClonedAllTasks(filteredTasks);
     }
   };
 
@@ -121,6 +118,8 @@ function App() {
                     Draggable={Draggable}
                     placeholder={provided.placeholder}
                     filterTasks={filterTasks}
+                    setActiveFilter={setActiveFilter}
+                    activeFilter={activeFilter}
                   />
                   <div>{provided.placeholder}</div>
                 </div>

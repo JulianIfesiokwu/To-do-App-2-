@@ -1,7 +1,7 @@
 import Task from "../Task/Task.component";
 import './TaskList.styles.scss'
 
-const TaskList = ({ allTasks, deleteTask, toggleCompleted, Draggable, filterTasks, toggleFilter, clonedAllTasks }) => {
+const TaskList = ({ allTasks, deleteTask, toggleCompleted, Draggable, filterTasks, toggleFilter, clonedAllTasks, activeFilter, setActiveFilter }) => {
     return (
         <div>
             <div className="task-list">
@@ -24,17 +24,35 @@ const TaskList = ({ allTasks, deleteTask, toggleCompleted, Draggable, filterTask
             <div className="control-panel">
                 <p className="items-left">{allTasks.length} {allTasks.length > 1 ? 'items left' : 'item left'}</p>
                 <div className="control-filters">
-                    <p className={toggleFilter ? 'active-filter' : 'all'} onClick={(all) => filterTasks(all)}>All</p>
-                    <p className={toggleFilter ? 'active-filter' : 'active'} onClick={(active) => filterTasks(active)}>Active</p>
-                    <p className={toggleFilter ? 'active-filter' : 'completed'} onClick={(completed) => filterTasks(completed)}>Completed</p>
+                    <p className={activeFilter === 'all' ? 'active-filter' : 'filter'} onClick={(all) => {
+                        filterTasks(all)
+                        setActiveFilter('all')
+                        }}>All</p>
+                    <p className={activeFilter === 'active' ? 'active-filter' : 'filter'} onClick={(active) => {
+                        filterTasks(active)
+                        setActiveFilter('active')
+                        }}>Active</p>
+                    <p className={activeFilter === 'completed' ? 'active-filter' : 'filter'} onClick={(completed) => {
+                        filterTasks(completed)
+                        setActiveFilter('completed')
+                        }}>Completed</p>
                 </div>
                 <p className="clear-completed" onClick={(clear) => filterTasks(clear)}>Clear Completed</p>
             </div>
             </div>
             <div className="mobile-control-filters">
-                <p className="all" onClick={(all) => filterTasks(all)}>All</p>
-                <p className="active" onClick={(active) => filterTasks(active)}>Active</p>
-                <p className="completed" onClick={(completed) => filterTasks(completed)}>Completed</p>
+                <p className={activeFilter === 'all' ? 'active-filter' : 'filter'} onClick={(all) => {
+                        filterTasks(all)
+                        setActiveFilter('all')
+                        }}>All</p>
+                    <p className={activeFilter === 'active' ? 'active-filter' : 'filter'} onClick={(active) => {
+                        filterTasks(active)
+                        setActiveFilter('active')
+                        }}>Active</p>
+                    <p className={activeFilter === 'completed' ? 'active-filter' : 'filter'} onClick={(completed) => {
+                        filterTasks(completed)
+                        setActiveFilter('completed')
+                        }}>Completed</p>
             </div>
         </div>
     )

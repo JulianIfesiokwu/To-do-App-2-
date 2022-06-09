@@ -2,7 +2,6 @@
 
 .task-list {
     margin-top: 1rem;
-    width: 50vw;
     background-color: var(--todoBackground-color);
     color: var(--text-color);
     border-radius: 5px;
@@ -25,15 +24,9 @@
     justify-content: space-between;
 }
 
-.all,.active,.completed {
+.filter {
     margin-left: 1rem;
     color: var(--text-color);
-}
-
-.all:hover,
-.active:hover,
-.completed:hover {
-    color: white;
 }
 
 .active-filter {
@@ -48,9 +41,6 @@
 
 .clear-completed {
     color: var(--text-color);
-}
-.clear-completed:hover {
-    color: white;
 }
 
 .mobile-control-filters {
@@ -85,11 +75,6 @@
         color: var(--text-color);
     }
 
-    .all:hover,
-    .active:hover,
-    .completed:hover {
-        color: white;
-    }
 }
 @media only screen and (max-width: 900px) {
     .task-list {
