@@ -36,8 +36,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://github.com/JulianIfesiokwu/To-do-App-2-)
-- Live Site URL: [Add live site URL here](https://to-do-app-2-umber.vercel.app/)
+- Solution URL: [https://github.com/JulianIfesiokwu/To-do-App-2-e](https://github.com/JulianIfesiokwu/To-do-App-2-)
+- Live Site URL: [https://to-do-app-2-umber.vercel.app/](https://to-do-app-2-umber.vercel.app/)
 
 ## My process
 
